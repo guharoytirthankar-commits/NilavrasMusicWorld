@@ -114,46 +114,64 @@ export default function HomeClient({
         </div>
 
       </section>
-      {/* FEATURED PERFORMANCES */}
+      {/* MY Originals */}
 
-      <section className="py-24 px-6 md:px-20">
+      <section className="py-32 px-6 md:px-20">
 
-        <h2 className="text-4xl font-bold text-yellow-500 text-center mb-12">
-          Featured Performances
-        </h2>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
+        >
+          <p className="text-amber-600 text-sm uppercase tracking-[3px] mb-6 font-light">Our Music</p>
+          <h2 className="text-5xl md:text-6xl font-light text-white mb-8">
+            My Originals
+          </h2>
+          <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto"></div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 mt-12">
 
           <iframe
             className="w-full aspect-video rounded-2xl"
-            src="https://www.youtube.com/embed/KkDMF6gx9Bs"
+            src="https://www.youtube.com/embed/wXedzVsvsb8"
             title="Performance 1"
             allowFullScreen
           />
 
           <iframe
             className="w-full aspect-video rounded-2xl"
-            src="https://www.youtube.com/embed/-BJScY0O-vU"
+            src="https://www.youtube.com/embed/fJXFBAIdqWI"
             title="Performance 2"
             allowFullScreen
           />
 
           <iframe
             className="w-full aspect-video rounded-2xl"
-            src="https://www.youtube.com/embed/7R42vJAfx0E"
+            src="https://www.youtube.com/embed/-8MjGgIV_J4"
             title="Performance 3"
             allowFullScreen
           />
 
         </div>
 {videos.length > 0 && (
-  <section className="py-24 px-6 md:px-0 bg-[#080808]">
+  <section className="py-32 px-6 md:px-0 bg-[#080808]">
 
-    <h2 className="text-4xl font-bold text-yellow-500 text-center mb-12">
-      More Performances
-    </h2>
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
+      className="text-center mb-16"
+    >
+      <p className="text-amber-600 text-sm uppercase tracking-[3px] mb-6 font-light">Performances</p>
+      <h2 className="text-5xl md:text-6xl font-light text-white mb-8">
+        Featured Performances
+      </h2>
+      <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto"></div>
+    </motion.div>
 
-    <div className="grid md:grid-cols-3 gap-8">
+    <div className="grid md:grid-cols-3 gap-8 mt-12">
 
       {videos.map((video, index) => (
 
@@ -175,13 +193,22 @@ export default function HomeClient({
 
       {/* GALLERY */}
 
-      <section className="bg-[#080808] py-24 px-6 md:px-20">
+      <section className="bg-[#080808] py-32 px-6 md:px-20">
 
-        <h2 className="text-4xl font-bold text-yellow-500 text-center mb-12">
-          Performance Gallery
-        </h2>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
+        >
+          <p className="text-amber-600 text-sm uppercase tracking-[3px] mb-6 font-light">Visual Memories</p>
+          <h2 className="text-5xl md:text-6xl font-light text-white mb-8">
+            Performance Gallery
+          </h2>
+          <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto"></div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
 
           <div className="overflow-hidden rounded-2xl">
             <Image
@@ -225,13 +252,22 @@ export default function HomeClient({
 
         </div>
 {gallery.length > 0 && (
-  <section className="py-24 px-6 md:px-0">
+  <section className="py-32 px-6 md:px-0">
 
-    <h2 className="text-4xl font-bold text-yellow-500 text-center mb-12">
-      Latest Memories
-    </h2>
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
+      className="text-center mb-16"
+    >
+      <p className="text-amber-600 text-sm uppercase tracking-[3px] mb-6 font-light">Gallery Updates</p>
+      <h2 className="text-5xl md:text-6xl font-light text-white mb-8">
+        Latest Memories
+      </h2>
+      <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto"></div>
+    </motion.div>
 
-    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
 
       {gallery.map((image, index) => (
 
@@ -259,18 +295,148 @@ export default function HomeClient({
 
       </section>
 
+      {/* PERFORMANCE FORMAT */}
+
+      <section className="py-32 px-6 md:px-20 bg-black">
+
+        <div className="max-w-5xl mx-auto">
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-20"
+          >
+            <p className="text-amber-600 text-sm uppercase tracking-[3px] mb-6 font-light">Experience Our Music</p>
+            <h2 className="text-4xl md:text-5xl font-light text-white mb-8 leading-tight">
+             Performance Format
+            </h2>
+            <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto"></div>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-12 mt-20">
+
+            {/* FULL BAND EXPERIENCE */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              whileHover={{ y: -8 }}
+              className="group h-full"
+            >
+              <div className="h-full flex flex-col">
+                <div className="h-px bg-gradient-to-r from-amber-600 to-transparent mb-8 group-hover:from-amber-500 transition-colors duration-300"></div>
+                
+                <h3 className="text-3xl md:text-4xl font-light text-white mb-6 group-hover:text-amber-100 transition-colors duration-300">
+                  Full Band Experience
+                </h3>
+
+                <p className="text-gray-400 mb-10 leading-relaxed text-base font-light group-hover:text-gray-300 transition-colors duration-300 flex-grow">
+                  Expansive sound designed to fill the room. Perfect for larger venues and energetic sets.
+                </p>
+
+                <div className="space-y-8">
+                  <div>
+                    <h4 className="text-amber-600 text-sm uppercase tracking-[2px] font-light mb-4 group-hover:text-amber-500 transition-colors duration-300">Performance Sets</h4>
+                    <div className="space-y-4 ml-2">
+                      <div className="text-sm">
+                        <p className="text-white font-light mb-1 group-hover:text-amber-50 transition-colors duration-300">Casettes and Classics</p>
+                        <p className="text-gray-500 text-xs group-hover:text-gray-400 transition-colors duration-300">Bollywood Masterpieces</p>
+                      </div>
+                      <div className="text-sm">
+                        <p className="text-white font-light mb-1 group-hover:text-amber-50 transition-colors duration-300">Roohaniyat</p>
+                        <p className="text-gray-500 text-xs group-hover:text-gray-400 transition-colors duration-300">Ghazal and Sufi Melodies</p>
+                      </div>
+                      <div className="text-sm">
+                        <p className="text-white font-light mb-1 group-hover:text-amber-50 transition-colors duration-300">Bangla Baithaki</p>
+                        <p className="text-gray-500 text-xs group-hover:text-gray-400 transition-colors duration-300">Classical Bengali Vocals</p>
+                      </div>
+                      <div className="text-sm">
+                        <p className="text-white font-light mb-1 group-hover:text-amber-50 transition-colors duration-300">Original Compositions</p>
+                        <p className="text-gray-500 text-xs group-hover:text-gray-400 transition-colors duration-300">Contemporary Fusion</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="h-px bg-gradient-to-r from-amber-600/50 to-transparent mt-10 group-hover:from-amber-500/70 transition-colors duration-300"></div>
+              </div>
+            </motion.div>
+
+            {/* DUO SET */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              whileHover={{ y: -8 }}
+              className="group h-full"
+            >
+              <div className="h-full flex flex-col">
+                <div className="h-px bg-gradient-to-r from-amber-600 to-transparent mb-8 group-hover:from-amber-500 transition-colors duration-300"></div>
+                
+                <h3 className="text-3xl md:text-4xl font-light text-white mb-6 group-hover:text-amber-100 transition-colors duration-300">
+                  Duo Set
+                </h3>
+
+                <p className="text-gray-400 mb-10 leading-relaxed text-base font-light group-hover:text-gray-300 transition-colors duration-300 flex-grow">
+                  Intimate and storytelling-driven. Ideal for listening rooms, private events and acoustic spaces.
+                </p>
+
+                <div className="space-y-8">
+                  <div>
+                    <h4 className="text-amber-600 text-sm uppercase tracking-[2px] font-light mb-4 group-hover:text-amber-500 transition-colors duration-300">Performance Sets</h4>
+                    <div className="space-y-4 ml-2">
+                      <div className="text-sm">
+                        <p className="text-white font-light mb-1 group-hover:text-amber-50 transition-colors duration-300">Casettes and Classics</p>
+                        <p className="text-gray-500 text-xs group-hover:text-gray-400 transition-colors duration-300">Bollywood Masterpieces</p>
+                      </div>
+                      <div className="text-sm">
+                        <p className="text-white font-light mb-1 group-hover:text-amber-50 transition-colors duration-300">Bangla Baithaki</p>
+                        <p className="text-gray-500 text-xs group-hover:text-gray-400 transition-colors duration-300">Classical Bengali Vocals</p>
+                      </div>
+                      <div className="text-sm">
+                        <p className="text-white font-light mb-1 group-hover:text-amber-50 transition-colors duration-300">Original Compositions</p>
+                        <p className="text-gray-500 text-xs group-hover:text-gray-400 transition-colors duration-300">Contemporary Fusion</p>
+                      </div>
+                      <div className="text-sm text-transparent">
+                        <p className="text-white font-light mb-1">Placeholder</p>
+                        <p className="text-gray-500 text-xs">Placeholder</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="h-px bg-gradient-to-r from-amber-600/50 to-transparent mt-10 group-hover:from-amber-500/70 transition-colors duration-300"></div>
+              </div>
+            </motion.div>
+
+          </div>
+
+        </div>
+
+      </section>
+
       {/* UPCOMING EVENTS */}
 
-      <section className="py-24 px-6 md:px-20 bg-[#080808]">
+      <section className="py-32 px-6 md:px-20 bg-[#080808]">
 
         <div className="max-w-6xl mx-auto">
 
-          <h2 className="text-4xl font-bold text-yellow-500 text-center mb-12">
-            Upcoming Events
-          </h2>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-16"
+          >
+            <p className="text-amber-600 text-sm uppercase tracking-[3px] mb-6 font-light">Calendar</p>
+            <h2 className="text-5xl md:text-6xl font-light text-white mb-8">
+              Upcoming Events
+            </h2>
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto"></div>
+          </motion.div>
 
           {events && events.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
 
               {events.map((event, index) => (
                 <motion.div
@@ -336,25 +502,27 @@ export default function HomeClient({
 
       {/* SOCIAL */}
 
-      <section className="py-24 px-6 md:px-20 bg-gradient-to-b from-black to-[#080808]">
+      <section className="py-32 px-6 md:px-20 bg-gradient-to-b from-black to-[#080808]">
 
         <div className="max-w-6xl mx-auto">
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl font-bold text-yellow-500 mb-4">
+            <p className="text-amber-600 text-sm uppercase tracking-[3px] mb-6 font-light">Social</p>
+            <h2 className="text-5xl md:text-6xl font-light text-white mb-8">
               Connect With Nilavra
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mb-8"></div>
+            <p className="text-gray-400 text-base max-w-2xl mx-auto font-light">
               Follow along for updates, behind-the-scenes content, and live performance announcements
             </p>
           </motion.div>
 
-          <div className="flex justify-center gap-6 flex-wrap">
+          <div className="flex justify-center gap-6 flex-wrap mt-12">
 
             <motion.a
               href={settingsMap.facebook}
@@ -410,15 +578,17 @@ export default function HomeClient({
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <h2 className="text-5xl font-bold text-yellow-500 mb-4">
+            <p className="text-amber-600 text-sm uppercase tracking-[3px] mb-6 font-light">Contact</p>
+            <h2 className="text-5xl md:text-6xl font-light text-white mb-8">
               Get In Touch
             </h2>
-            <p className="text-gray-400 text-lg">
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mb-8"></div>
+            <p className="text-gray-400 text-base font-light">
               Ready to book a performance or have questions? Reach out through any of these channels.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 mt-12">
 
             <motion.div
               initial={{ opacity: 0, x: -20 }}
