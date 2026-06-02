@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { convertGoogleDriveUrl } from '../lib/urlConverter';
+import BookingModal from './BookingModal';
 import {
   FaFacebookF,
   FaInstagram,
@@ -12,9 +14,18 @@ import {
 
 interface HomeClientProps {
   settingsMap: Record<string, string>;
+  videos: any[];
+  gallery: any[];
+  events: any[];
 }
 
-export default function HomeClient({ settingsMap }: HomeClientProps) {
+export default function HomeClient({
+  settingsMap,
+  videos,
+  gallery,
+  events,
+}: HomeClientProps) {
+  console.log("SETTINGS MAP:", settingsMap);
   return (
     <main className="bg-black text-white">
 
@@ -45,15 +56,13 @@ export default function HomeClient({ settingsMap }: HomeClientProps) {
               Live • Classical • Timeless
             </p>
 
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-              Songs that stay
-              <br />
-              with you.
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+            {settingsMap.heroTitle || "Songs that stay with you"}
             </h1>
 
             <p className="mt-6 text-lg text-gray-300 max-w-2xl">
-              Nilavra Roy | 22 Years of Musical Excellence.
-              Classical Roots. Modern Stage Energy.
+              {settingsMap.heroSubtitle ||
+                "Nilavra Roy | 22 Years of Musical Excellence. Classical Roots. Modern Stage Energy."}
             </p>
 
             <div className="mt-8 flex gap-4 flex-wrap">
@@ -65,12 +74,7 @@ export default function HomeClient({ settingsMap }: HomeClientProps) {
                 About Nilavra
               </a>
 
-              <a
-                href="#contact"
-                className="px-8 py-3 border border-yellow-500 text-yellow-500 rounded-full hover:bg-yellow-500 hover:text-black transition"
-              >
-                Book A Show
-              </a>
+              <BookingModal />
 
             </div>
 
@@ -94,10 +98,8 @@ export default function HomeClient({ settingsMap }: HomeClientProps) {
           </h2>
 
           <p className="text-lg text-gray-300 leading-9">
-            Nilavra Roy is a classically trained vocalist with over 22 years
-            of musical training and performance experience. Rooted in Indian
-            classical traditions, he brings versatility, emotion and stage
-            presence to every performance.
+            {settingsMap.aboutShort ||
+              "Nilavra Roy is a classically trained vocalist with over 22 years of musical training and performance experience."}
           </p>
 
           <p className="text-lg text-gray-300 leading-9 mt-6">
@@ -144,7 +146,31 @@ export default function HomeClient({ settingsMap }: HomeClientProps) {
           />
 
         </div>
+{videos.length > 0 && (
+  <section className="py-24 px-6 md:px-0 bg-[#080808]">
 
+    <h2 className="text-4xl font-bold text-yellow-500 text-center mb-12">
+      More Performances
+    </h2>
+
+    <div className="grid md:grid-cols-3 gap-8">
+
+      {videos.map((video, index) => (
+
+        <iframe
+          key={index}
+          className="w-full aspect-video rounded-2xl"
+          src={`https://www.youtube.com/embed/${video.youtubeId}`}
+          title={video.title}
+          allowFullScreen
+        />
+
+      ))}
+
+    </div>
+
+  </section>
+)}
       </section>
 
       {/* GALLERY */}
@@ -198,38 +224,172 @@ export default function HomeClient({ settingsMap }: HomeClientProps) {
           </div>
 
         </div>
+{gallery.length > 0 && (
+  <section className="py-24 px-6 md:px-0">
+
+    <h2 className="text-4xl font-bold text-yellow-500 text-center mb-12">
+      Latest Memories
+    </h2>
+
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      {gallery.map((image, index) => (
+
+        <div
+          key={index}
+          className="overflow-hidden rounded-2xl"
+        >
+
+          <Image
+            src={convertGoogleDriveUrl(image.imageUrl)}
+            alt={image.title}
+            width={600}
+            height={600}
+            className="w-full h-72 object-cover hover:scale-110 transition duration-500"
+          />
+
+        </div>
+
+      ))}
+
+    </div>
+
+  </section>
+)}
 
       </section>
+
+      {/* UPCOMING EVENTS */}
+
+      <section className="py-24 px-6 md:px-20 bg-[#080808]">
+
+        <div className="max-w-6xl mx-auto">
+
+          <h2 className="text-4xl font-bold text-yellow-500 text-center mb-12">
+            Upcoming Events
+          </h2>
+
+          {events && events.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+              {events.map((event, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-gray-900 border border-yellow-500/30 rounded-2xl p-8 hover:border-yellow-500 transition"
+                >
+
+                  <h3 className="text-2xl font-bold text-yellow-500 mb-4">
+                    {event.title}
+                  </h3>
+
+                  <div className="space-y-3 text-gray-300">
+
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-500 font-semibold">📅 Date:</span>
+                      <span>{event.date}</span>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-500 font-semibold">📍 Venue:</span>
+                      <span>{event.venue}</span>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-500 font-semibold">🏙️ City:</span>
+                      <span>{event.city}</span>
+                    </div>
+
+                  </div>
+
+                </motion.div>
+              ))}
+
+            </div>
+          ) : (
+            <div className="text-center py-16">
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+
+                <p className="text-2xl text-gray-400 mb-4">🎪</p>
+                <p className="text-xl text-gray-300">
+                  Coming Soon!
+                </p>
+                <p className="text-gray-500 mt-2">
+                  Exciting performances are being planned. Stay tuned!
+                </p>
+
+              </motion.div>
+
+            </div>
+          )}
+
+        </div>
+
+      </section>
+
       {/* SOCIAL */}
 
-      <section className="py-20 px-6 md:px-20">
+      <section className="py-24 px-6 md:px-20 bg-gradient-to-b from-black to-[#080808]">
 
-        <h2 className="text-4xl font-bold text-yellow-500 text-center mb-12">
-          Connect With Nilavra
-        </h2>
+        <div className="max-w-6xl mx-auto">
 
-        <div className="flex justify-center gap-8 text-4xl">
-
-          <a
-            href="https://www.facebook.com/share/1CiKqEsL9z/"
-            target="_blank"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
           >
-            <FaFacebookF />
-          </a>
+            <h2 className="text-5xl font-bold text-yellow-500 mb-4">
+              Connect With Nilavra
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Follow along for updates, behind-the-scenes content, and live performance announcements
+            </p>
+          </motion.div>
 
-          <a
-            href="https://www.instagram.com/roynilavra"
-            target="_blank"
-          >
-            <FaInstagram />
-          </a>
+          <div className="flex justify-center gap-6 flex-wrap">
 
-          <a
-            href="https://youtube.com/@nilavraroy11"
-            target="_blank"
-          >
-            <FaYoutube />
-          </a>
+            <motion.a
+              href={settingsMap.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.15, rotate: 5 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-blue-800 text-white text-3xl hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
+            >
+              <FaFacebookF />
+            </motion.a>
+
+            <motion.a
+              href={settingsMap.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.15, rotate: -5 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-purple-600 text-white text-3xl hover:shadow-lg hover:shadow-pink-500/50 transition-all duration-300"
+            >
+              <FaInstagram />
+            </motion.a>
+
+            <motion.a
+              href={settingsMap.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.15, rotate: 5 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-red-600 to-red-800 text-white text-3xl hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300"
+            >
+              <FaYoutube />
+            </motion.a>
+
+          </div>
 
         </div>
 
@@ -244,28 +404,78 @@ export default function HomeClient({ settingsMap }: HomeClientProps) {
 
         <div className="max-w-4xl mx-auto">
 
-          <h2 className="text-4xl font-bold text-yellow-500 mb-10">
-            Book Nilavra Roy
-          </h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <h2 className="text-5xl font-bold text-yellow-500 mb-4">
+              Get In Touch
+            </h2>
+            <p className="text-gray-400 text-lg">
+              Ready to book a performance or have questions? Reach out through any of these channels.
+            </p>
+          </motion.div>
 
-          <div className="space-y-6 text-lg">
+          <div className="grid md:grid-cols-2 gap-8">
 
-            <div className="flex items-center gap-4">
-              <FaPhone color="#eab308" />
-              <span>{settingsMap.phone1}</span>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-gradient-to-br from-gray-800 to-gray-900 border border-yellow-500/20 rounded-2xl p-8 hover:border-yellow-500/50 transition-all duration-300"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-14 h-14 rounded-full bg-yellow-500/20 flex items-center justify-center flex-shrink-0">
+                  <FaPhone className="text-yellow-500 text-xl" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-yellow-500 mb-2">Phone</h3>
+                  <a href={`tel:${settingsMap.phone1}`} className="text-gray-300 hover:text-yellow-500 transition mb-2 block">
+                    {settingsMap.phone1}
+                  </a>
+                  <a href={`tel:${settingsMap.phone2}`} className="text-gray-300 hover:text-yellow-500 transition block">
+                    {settingsMap.phone2}
+                  </a>
+                </div>
+              </div>
+            </motion.div>
 
-            <div className="flex items-center gap-4">
-              <FaPhone color="#eab308" />
-              <span>{settingsMap.phone2}</span>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <FaEnvelope color="#eab308" />
-              <span>{settingsMap.email}</span>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-gradient-to-br from-gray-800 to-gray-900 border border-yellow-500/20 rounded-2xl p-8 hover:border-yellow-500/50 transition-all duration-300"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-14 h-14 rounded-full bg-yellow-500/20 flex items-center justify-center flex-shrink-0">
+                  <FaEnvelope className="text-yellow-500 text-xl" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-yellow-500 mb-2">Email</h3>
+                  <a href={`mailto:${settingsMap.email}`} className="text-gray-300 hover:text-yellow-500 transition">
+                    {settingsMap.email}
+                  </a>
+                </div>
+              </div>
+            </motion.div>
 
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-12 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-2xl p-8 text-center"
+          >
+            <p className="text-gray-300 mb-4">
+              💡 For inquiries, event bookings, or collaboration opportunities
+            </p>
+            <p className="text-gray-400 text-sm">
+              Response time: Typically within 24-48 hours
+            </p>
+          </motion.div>
 
         </div>
 

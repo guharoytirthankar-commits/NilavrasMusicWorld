@@ -1,17 +1,44 @@
-import { getSettings } from "../lib/googleSheets";
+import {
+  getSettings,
+  getVideos,
+  getGallery,
+  getEvents,
+} from "../lib/googleSheets";
 import HomeClient from "./HomeClient";
 
-export default async function Home(){
+export default async function Home() {
   try {
     const settings = await getSettings();
+    const videos = await getVideos();
+    const gallery = await getGallery();
+    const events = await getEvents();
 
-    const settingsMap = Object.fromEntries(
-      settings.map((item: any) => [item.key, item.value])
+    const settingsMap: Record<string, string> =
+      Object.fromEntries(
+        settings.map((item: any) => [
+          item.key,
+          item.value,
+        ])
+      );
+
+    return (
+      <HomeClient
+        settingsMap={settingsMap}
+        videos={videos}
+        gallery={gallery}
+        events={events}
+      />
     );
-
-    return <HomeClient settingsMap={settingsMap} />;
   } catch (error) {
-    console.error("Error in Home component:", error);
-    return <HomeClient settingsMap={{}} />;
+    console.error(error);
+
+    return (
+      <HomeClient
+        settingsMap={{}}
+        videos={[]}
+        gallery={[]}
+        events={[]}
+      />
+    );
   }
 }
