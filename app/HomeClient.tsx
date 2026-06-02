@@ -399,8 +399,8 @@ export default function HomeClient({
                         <p className="text-gray-500 text-xs group-hover:text-gray-400 transition-colors duration-300">Contemporary Fusion</p>
                       </div>
                       <div className="text-sm text-transparent">
-                        <p className="text-white font-light mb-1">Placeholder</p>
-                        <p className="text-gray-500 text-xs">Placeholder</p>
+                        <p className="text-white font-light mb-1">Songs on Request</p>
+                        <p className="text-gray-500 text-xs">Songs on audience's Request</p>
                       </div>
                     </div>
                   </div>
