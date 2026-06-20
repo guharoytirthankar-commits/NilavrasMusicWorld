@@ -17,6 +17,7 @@ interface HomeClientProps {
   videos: any[];
   gallery: any[];
   events: any[];
+  performance: any[];
 }
 
 export default function HomeClient({
@@ -24,6 +25,7 @@ export default function HomeClient({
   videos,
   gallery,
   events,
+  performance,
 }: HomeClientProps) {
   console.log("SETTINGS MAP:", settingsMap);
   return (
@@ -208,49 +210,24 @@ export default function HomeClient({
           <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto"></div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-          <div className="overflow-hidden rounded-2xl">
-            <Image
-              src="/images/gallery1.jpg"
-              alt="Gallery 1"
-              width={600}
-              height={600}
-              className="w-full h-72 object-cover hover:scale-110 transition duration-500"
-            />
-          </div>
+  {performance.map((image, index) => (
+    <div
+      key={`performance-${index}`}
+      className="overflow-hidden rounded-2xl"
+    >
+      <Image
+            src={convertGoogleDriveUrl(image.imageUrl)}
+            alt={image.title}
+            width={600}
+            height={600}
+            className="w-full h-72 object-cover hover:scale-110 transition duration-500"
+          />
+    </div>
+  ))}
 
-          <div className="overflow-hidden rounded-2xl">
-            <Image
-              src="/images/gallery2.jpg"
-              alt="Gallery 2"
-              width={600}
-              height={600}
-              className="w-full h-72 object-cover hover:scale-110 transition duration-500"
-            />
-          </div>
-
-          <div className="overflow-hidden rounded-2xl">
-            <Image
-              src="/images/gallery3.jpg"
-              alt="Gallery 3"
-              width={600}
-              height={600}
-              className="w-full h-72 object-cover hover:scale-110 transition duration-500"
-            />
-          </div>
-
-          <div className="overflow-hidden rounded-2xl">
-            <Image
-              src="/images/gallery4.jpg"
-              alt="Gallery 4"
-              width={600}
-              height={600}
-              className="w-full h-72 object-cover hover:scale-110 transition duration-500"
-            />
-          </div>
-
-        </div>
+</div>
 {gallery.length > 0 && (
   <section className="py-32 px-6 md:px-0">
 

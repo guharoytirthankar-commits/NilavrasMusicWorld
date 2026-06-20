@@ -34,6 +34,22 @@ export async function getGallery() {
     return [];
   }
 }
+export async function getPerformance() {
+  try {
+    const res = await fetch(
+      `https://opensheet.elk.sh/${SHEET_ID}/Performance`,
+      { cache: "no-store" }
+    );
+
+    if (!res.ok) {
+      return [];
+    }
+
+    return res.json();
+  } catch (error) {
+    return [];
+  }
+}
 
 export async function getEvents() {
   try {

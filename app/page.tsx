@@ -3,6 +3,7 @@ import {
   getVideos,
   getGallery,
   getEvents,
+  getPerformance,
 } from "../lib/googleSheets";
 import HomeClient from "./HomeClient";
 
@@ -12,6 +13,7 @@ export default async function Home() {
     const videos = await getVideos();
     const gallery = await getGallery();
     const events = await getEvents();
+    const performance= await getPerformance();
 
     const settingsMap: Record<string, string> =
       Object.fromEntries(
@@ -27,6 +29,7 @@ export default async function Home() {
         videos={videos}
         gallery={gallery}
         events={events}
+        performance={performance}
       />
     );
   } catch (error) {
@@ -38,6 +41,7 @@ export default async function Home() {
         videos={[]}
         gallery={[]}
         events={[]}
+        performance={[]}
       />
     );
   }
