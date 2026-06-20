@@ -71,7 +71,7 @@ export default function HomeClient({
                 href="#about"
                 className="px-8 py-3 bg-yellow-500 text-black rounded-full font-semibold hover:bg-yellow-400 transition"
               >
-                About Nilavra
+                About Nilavra Live
               </a>
 
               <BookingModal />
@@ -94,7 +94,7 @@ export default function HomeClient({
         <div className="max-w-5xl mx-auto">
 
           <h2 className="text-4xl font-bold text-yellow-500 mb-8">
-            About Nilavra
+            About Nilavra Live
           </h2>
 
           <p className="text-lg text-gray-300 leading-9">
@@ -126,7 +126,7 @@ export default function HomeClient({
         >
           <p className="text-amber-600 text-sm uppercase tracking-[3px] mb-6 font-light">Our Music</p>
           <h2 className="text-5xl md:text-6xl font-light text-white mb-8">
-            My Originals
+            Our Originals
           </h2>
           <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto"></div>
         </motion.div>
@@ -514,7 +514,7 @@ export default function HomeClient({
           >
             <p className="text-amber-600 text-sm uppercase tracking-[3px] mb-6 font-light">Social</p>
             <h2 className="text-5xl md:text-6xl font-light text-white mb-8">
-              Connect With Nilavra
+              Connect With Nilavra Live
             </h2>
             <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mb-8"></div>
             <p className="text-gray-400 text-base max-w-2xl mx-auto font-light">
@@ -578,12 +578,12 @@ export default function HomeClient({
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <p className="text-amber-600 text-sm uppercase tracking-[3px] mb-6 font-light">Contact</p>
-            <h2 className="text-5xl md:text-6xl font-light text-white mb-8">
+            <p className="text-amber-600 text-sm uppercase tracking-[3px] mb-6 font-light text-center">Contact</p>
+            <h2 className="text-5xl md:text-6xl font-light text-white mb-8 text-center">
               Get In Touch
             </h2>
             <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mb-8"></div>
-            <p className="text-gray-400 text-base font-light">
+            <p className="text-gray-400 text-base font-light text-center">
               Ready to book a performance or have questions? Reach out through any of these channels.
             </p>
           </motion.div>

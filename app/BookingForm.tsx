@@ -139,24 +139,6 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
           />
         </div>
 
-        <div>
-          <label className="block text-gray-300 mb-2 font-semibold">
-            Number of Tickets *
-          </label>
-          <select
-            name="tickets"
-            value={formData.tickets}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-yellow-500 focus:outline-none"
-          >
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
-              <option key={num} value={num}>
-                {num} {num === 1 ? 'Ticket' : 'Tickets'}
-              </option>
-            ))}
-          </select>
-        </div>
       </div>
 
       <button
